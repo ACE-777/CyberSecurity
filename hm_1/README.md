@@ -1,4 +1,5 @@
 ### Правило на Codeql
+Данное правило определяет в классе ShellUtils потенциальную уязвимость:
 
 ```
 /**
@@ -58,11 +59,12 @@ select sink.getNode(), source, sink,
 `return new String[] {"bash", "-c", "id -gn " + user + "; id -Gn " + user};`
 ![img_1.png](img_1.png)
 
-Таким образом в предыдущей версии мы могли обратить внимание на то, что возможное исполнение скриптов,
+Таким образом в предыдущей версии мы могли обратить внимание на то, что возможно исполнение скриптов,
 которые мы можем передать в качестве `user`.
 
+Для исполнения скачать кодовую базу с https://github.com/Alluxio/alluxio
 ### Правило на Semgrep
-
+Следующее правило представлено для semgrep:
 ```
 rules:
   - id: find-execCommand-with-getGroupsForUserCommand-argument
@@ -79,10 +81,11 @@ rules:
 Данное правило показывает нахождения трех функций, удовлетворяющему нашему правилу.
 ![img_2.png](img_2.png)
 
-Если залезть внутрь `306┆ result = ShellUtils.execCommand(ShellUtils.getGroupsForUserCommand(user));`, то можно
-обнаружить исполнение команды, в которую мы можем передать скрипт.
+Если поизучать в коде внутри `306┆ result = ShellUtils.execCommand(ShellUtils.getGroupsForUserCommand(user));`, то можно
+обнаружить исполнение команды, в которую мы можем передать скрипт. Таким образом можно определить уязвимость.
 
 ### Правило на Joern
+Порядок команд для dataflow анализа в joern:
 ```bash
 val src = cpg.typeDecl.isPublic.method.isPublic.parameter
 val sink = cpg.call.name("execCommand").argument

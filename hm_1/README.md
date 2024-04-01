@@ -62,7 +62,9 @@ select sink.getNode(), source, sink,
 Таким образом в предыдущей версии мы могли обратить внимание на то, что возможно исполнение скриптов,
 которые мы можем передать в качестве `user`.
 
-Для исполнения скачать кодовую базу с https://github.com/Alluxio/alluxio
+#### Исполнение
+Для исполнения скачать кодовую базу с https://github.com/Alluxio/alluxio и исполнить codeql/example.ql 
+
 ### Правило на Semgrep
 Следующее правило представлено для semgrep:
 ```
@@ -84,6 +86,12 @@ rules:
 Если поизучать в коде внутри `306┆ result = ShellUtils.execCommand(ShellUtils.getGroupsForUserCommand(user));`, то можно
 обнаружить исполнение команды, в которую мы можем передать скрипт. Таким образом можно определить уязвимость.
 
+#### Исполнение
+Для исполнения можно clone https://github.com/ACE-777/alluxio и в корне исполнить 
+```bash
+semgrep scan --config rule.yaml
+```
+
 ### Правило на Joern
 Порядок команд для dataflow анализа в joern:
 ```bash
@@ -93,3 +101,13 @@ sink.reachableByFlows(src)
 ```
 ![img_3.png](img_3.png)
 
+#### Исполнение
+Установить joern
+Затем:
+```bash
+./joern
+importCode("/home/mishadyagilev/GolandProjects/alluxio","alluxio","JAVASRC")
+val src = cpg.typeDecl.isPublic.method.isPublic.parameter
+val sink = cpg.call.name("execCommand").argument
+sink.reachableByFlows(src)
+```

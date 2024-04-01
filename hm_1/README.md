@@ -95,19 +95,22 @@ semgrep scan --config rule.yaml
 ### Правило на Joern
 Порядок команд для dataflow анализа в joern:
 ```bash
-val src = cpg.typeDecl.isPublic.method.isPublic.parameter
+val src = cpg.typeDecl.name("ShellUtils").method.isPublic.parameter
 val sink = cpg.call.name("execCommand").argument
-sink.reachableByFlows(src)
+sink.reachableByFlows(src).p
 ```
-![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+
+Далее изучив вызов, можно обнаружить потенциальную уязвимость
 
 #### Исполнение
-Установить joern
+Установить joern.
+
 Затем:
 ```bash
 ./joern
 importCode("/home/mishadyagilev/GolandProjects/alluxio","alluxio","JAVASRC")
-val src = cpg.typeDecl.isPublic.method.isPublic.parameter
+val src = cpg.typeDecl.name("ShellUtils").method.isPublic.parameter
 val sink = cpg.call.name("execCommand").argument
-sink.reachableByFlows(src)
+sink.reachableByFlows(src).p
 ```

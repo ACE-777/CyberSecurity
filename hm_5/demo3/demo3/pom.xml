@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>demo3</groupId>
+    <artifactId>demo3</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+	<dependencies>
+        <dependency>
+            <groupId>com.alibaba.alink</groupId>
+            <artifactId>shaded_tensorflow_core_api</artifactId>
+            <version>0.2.0-0.6</version>
+        </dependency>
+	</dependencies>
+
+
+</project>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>alink_shaded</artifactId>
+    <groupId>com.alibaba.alink</groupId>
+    <version>0.6</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>demo3</groupId>
+  <artifactId>demo3</artifactId>
+  <version>${tensorflow.core.api.version}-0.6</version>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>*:*</include>
+            </includes>
+          </artifactSet>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+              </excludes>
+            </filter>
+          </filters>
+          <relocations>
+            <relocation>
+              <pattern>com.google.protobuf</pattern>
+              <shadedPattern>com.alibaba.flink.ml.tf2.shaded.com.google.protobuf</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <properties>
+    <tensorflow.core.api.version>0.2.0</tensorflow.core.api.version>
+  </properties>
+</project> -->

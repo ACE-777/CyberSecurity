@@ -14,6 +14,8 @@ Exception in thread "main" java.lang.StackOverflowError
         at java.base/java.util.AbstractSet.hashCode(Unknown Source)
 ```
 
+![img_3.png](img_3.png)
+
 `<set reference='../../../set/set[2]'/>:` - указывает на родительский `<set>` элемент в XML-дереве.`../../../set/set[2]`
 указывает на второй элемент `<set>` на уровне выше текущего `<set>`. Это создает ссылку на предыдущий уровень 
 вложенности, что приводит к рекурсивному поведению.
